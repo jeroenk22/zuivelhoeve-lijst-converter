@@ -41,5 +41,9 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/react-datepicker": "^4.11.2",
     "typescript": "^5.1.3"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/jeroenk22/zuivelhoeve-lijst-converter.git",
+  "author": "J. Krajenbrink <jeroenkrajenbrink@gmail.com>",
+  "license": "MIT"
 }
