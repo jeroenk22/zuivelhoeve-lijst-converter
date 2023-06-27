@@ -1,5 +1,5 @@
 import React from 'react';
-import ExcelFilter from './ExcelFilter/ExcelFilter';
+import ExcelFilter from './components/ExcelFilter/ExcelFilter';
 
 const App: React.FC = () => {
   return (
