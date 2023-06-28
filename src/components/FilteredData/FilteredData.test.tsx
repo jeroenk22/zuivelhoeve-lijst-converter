@@ -7,14 +7,14 @@ afterEach(cleanup);
 
 describe('FilteredData', () => {
   it('moet de juiste tekst en tabellay-out weergeven', () => {
-    const filteredRowCount = 3;
+    const filteredRowCount = 3; // Aantal gefilterde rijen
     const tableData = [
-      ['Naam', 'Leeftijd', 'Stad'],
-      ['John', '25', 'New York'],
-      ['Jane', '30', 'Los Angeles'],
-      ['Bob', '40', 'Chicago'],
+      ['Naam', 'Leeftijd', 'Stad'], // Tabelkop
+      ['John', '25', 'New York'], // Eerste rij
+      ['Jane', '30', 'Los Angeles'], // Tweede rij
+      ['Bob', '40', 'Chicago'], // Derde rij
     ];
-    const colliCount = 10;
+    const colliCount = 10; // Aantal colli
 
     const { getByRole } = render(
       <FilteredData filteredRowCount={filteredRowCount} tableData={tableData} colliCount={colliCount} />
@@ -22,11 +22,11 @@ describe('FilteredData', () => {
 
     const filteredRowCountElement = document.querySelector('p');
     expect(filteredRowCountElement).toBeInTheDocument();
-    expect(filteredRowCountElement).toHaveTextContent(`Aantal Zuivelhoeve adressen: 3`);
-  
+    expect(filteredRowCountElement).toHaveTextContent(`Aantal Zuivelhoeve adressen: 3`); // Controleren of de juiste gefilterde rijen tekst wordt weergegeven
+
     const colliCountElement = document.querySelector('p');
     expect(colliCountElement).toBeInTheDocument();
-    expect(colliCountElement).toHaveTextContent(`Totale aantal colli: 10`);
+    expect(colliCountElement).toHaveTextContent(`Totale aantal colli: 10`); // Controleren of het juiste aantal colli tekst wordt weergegeven
 
     // Controleer of de juiste tabelkop en tabelrijen worden weergegeven
     const tableHeader = getByRole('row', { name: '# Naam Leeftijd Stad' });
