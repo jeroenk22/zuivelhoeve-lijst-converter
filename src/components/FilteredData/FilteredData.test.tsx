@@ -26,7 +26,7 @@ describe('FilteredData', () => {
 
     const colliCountElement = document.querySelector('p');
     expect(colliCountElement).toBeInTheDocument();
-    expect(colliCountElement).toHaveTextContent(`Totale aantal colli: 10`); // Controleren of het juiste aantal colli tekst wordt weergegeven
+    expect(colliCountElement).toHaveTextContent(`Totaal aantal colli: 10`); // Controleren of het juiste aantal colli tekst wordt weergegeven
 
     // Controleer of de juiste tabelkop en tabelrijen worden weergegeven
     const tableHeader = getByRole('row', { name: '# Naam Leeftijd Stad' });

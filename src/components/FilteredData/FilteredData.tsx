@@ -22,7 +22,7 @@ const FilteredData: React.FC<FilteredDataProps> = ({
   return (
     <div>
       <p>Aantal Zuivelhoeve adressen: <b>{filteredRowCount}</b><br />
-        Totale aantal colli: <b>{colliCount}</b>
+        Totaal aantal colli: <b>{colliCount}</b>
       </p>
       <table>
         <thead>
