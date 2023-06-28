@@ -14,7 +14,7 @@ describe('FilteredData', () => {
     ];
     const colliCount = 10;
 
-    const { getByText, getByRole } = render(
+    const { getByRole } = render(
       <FilteredData filteredRowCount={filteredRowCount} tableData={tableData} colliCount={colliCount} />
     );
 
