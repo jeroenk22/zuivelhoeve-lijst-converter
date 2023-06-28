@@ -14,7 +14,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFileUpload }) => {
 
   return (
     <div>
-      <input type='file' accept='.xlsx' onChange={handleFileChange} />
+      <input type='file' data-testid="file-uploader" accept='.xlsx' onChange={handleFileChange} />
     </div>
   );
 };

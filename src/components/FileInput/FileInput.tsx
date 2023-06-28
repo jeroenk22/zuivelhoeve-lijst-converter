@@ -8,12 +8,15 @@ interface FileInputProps {
 const FileInput: React.FC<FileInputProps> = ({ onChange }) => {
   const handleFileChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const file = event.target.files && event.target.files[0];
-    if (file && validateFileExtension(file)) {
-      onChange(event);
-    } else {
-      // Geef een melding of voer andere logica uit voor ongeldige bestanden
-      console.log('Ongeldig bestandstype. Selecteer een XLSX-bestand.');
-      event.target.value = ''; // Reset de waarde van het bestandsinvoerveld
+    if (file) {
+      const isValidFile = validateFileExtension(file) && file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+      if (isValidFile) {
+        onChange(event);
+      } else {
+        // Geef een melding of voer andere logica uit voor ongeldige bestanden
+        alert('Ongeldig bestandstype. Selecteer een XLSX-bestand.');
+        event.target.value = ''; // Reset de waarde van het bestandsinvoerveld
+      }
     }
   };
 

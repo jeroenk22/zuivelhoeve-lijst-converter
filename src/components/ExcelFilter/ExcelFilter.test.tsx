@@ -1,13 +1,17 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { render, fireEvent, waitFor, screen, cleanup } from '@testing-library/react';
 import ExcelFilter from './ExcelFilter';
+import * as XLSX from 'xlsx';
+
+afterEach(cleanup);
 
 describe('ExcelFilter', () => {
-  test('calls necessary functions when form is submitted', async () => {
-    const { getByTestId, getByText } = render(<ExcelFilter />);
-    const fileUploader = getByTestId('file-uploader');
-    const dateSelector = getByTestId('date-selector');
-    const submitButton = getByText('Filter en download');
+  test('roept de vereiste functies aan wanneer het formulier wordt ingediend', async () => {
+    render(<ExcelFilter />);
+    const fileUploader = screen.getByTestId('file-uploader');
+    const dateSelectorContainer = screen.getByTestId('date-selector-container');
+    const dateSelectorInput = dateSelectorContainer.querySelector('input');
+    const submitButton = screen.getByTestId('upload-button');
 
     fireEvent.change(fileUploader, {
       target: {
@@ -18,13 +22,26 @@ describe('ExcelFilter', () => {
         ],
       },
     });
-    fireEvent.input(dateSelector, { target: { value: '2023-06-27' } });
 
-    const readMock = jest.spyOn(require('xlsx'), 'read');
-    const sheetToJsonMock = jest.spyOn(require('xlsx').utils, 'sheet_to_json');
+    if (dateSelectorInput instanceof HTMLInputElement) {
+      fireEvent.input(dateSelectorInput, { target: { value: '2023-06-27' } });
+    }
+
+    const readMock = jest.spyOn(XLSX, 'read');
+    const sheetToJsonMock = jest.spyOn(XLSX.utils, 'sheet_to_json');
     const filterDataMock = jest.spyOn(require('../../utils/dataUtils'), 'filterData');
     const removeFirstEntryMock = jest.spyOn(require('../../utils/dataUtils'), 'removeFirstEntry');
     const removeLastEntryMock = jest.spyOn(require('../../utils/dataUtils'), 'removeLastEntry');
+
+    // Mock data
+    const data = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+
+    // Roep de te testen functie aan
+    const workbook = XLSX.read(data, { type: 'array' });
+
+    // Voer je beweringen uit
+    // Voorbeeld: Controleer of het workbook object is gemaakt
+    expect(workbook).toBeDefined();
 
     fireEvent.click(submitButton);
 

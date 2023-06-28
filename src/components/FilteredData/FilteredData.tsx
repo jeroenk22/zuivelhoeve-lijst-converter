@@ -17,7 +17,7 @@ const FilteredData: React.FC<FilteredDataProps> = ({
 
   return (
     <div>
-      <p>Aantal Zuivelhoeve adressen: {filteredRowCount}</p>
+      <p>Aantal Zuivelhoeve adressen: <b>{filteredRowCount}</b></p>
       <table>
         <thead>
           <tr>

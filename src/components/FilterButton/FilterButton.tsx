@@ -5,7 +5,7 @@ interface FilterButtonProps {
 }
 
 const FilterButton: React.FC<FilterButtonProps> = ({ onClick }) => {
-  return <button onClick={onClick}>Upload</button>;
+  return <button onClick={onClick}>Upload Excelbestand</button>;
 };
 
 export default FilterButton;
