@@ -1,8 +1,9 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import * as XLSX from 'xlsx';
-
 import DownloadButton from './DownloadButton';
+
+afterEach(cleanup);
 
 jest.mock('xlsx', () => ({
   utils: {

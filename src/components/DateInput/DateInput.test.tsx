@@ -1,7 +1,9 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import DateInput from './DateInput';
 import '@testing-library/jest-dom/extend-expect';
+
+afterEach(cleanup);
 
 describe('DateInput', () => {
   test('rendert zonder problemen', () => {

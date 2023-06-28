@@ -1,7 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import FilteredData from './FilteredData';
+
+afterEach(cleanup);
 
 describe('FilteredData', () => {
   it('moet de juiste tekst en tabellay-out weergeven', () => {

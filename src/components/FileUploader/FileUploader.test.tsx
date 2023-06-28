@@ -1,6 +1,8 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import FileUploader from './FileUploader';
+
+afterEach(cleanup);
 
 describe('FileUploader', () => {
   it('moet de onFileUpload functie aanroepen met het geselecteerde bestand', () => {

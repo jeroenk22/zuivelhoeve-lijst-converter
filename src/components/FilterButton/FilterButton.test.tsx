@@ -1,7 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import userEvent from "@testing-library/user-event";
 import FilterButton from './FilterButton';
+
+afterEach(cleanup);
 
 describe('FilterButton', () => {
   it('moet de onClick functie aanroepen wanneer erop wordt geklikt', () => {
