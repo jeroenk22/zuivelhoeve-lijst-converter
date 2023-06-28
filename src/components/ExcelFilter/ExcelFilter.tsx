@@ -12,6 +12,7 @@ const ExcelFilter: React.FC = () => {
     uploadedFile,
     filteredRowCount,
     tableData,
+    colliCount,
     handleDateChange,
     handleFileUpload,
     handleFormSubmit,
@@ -31,6 +32,7 @@ const ExcelFilter: React.FC = () => {
           <FilteredData
             filteredRowCount={filteredRowCount}
             tableData={tableData}
+            colliCount={colliCount}
           />
           <DownloadButton
             data={tableData}

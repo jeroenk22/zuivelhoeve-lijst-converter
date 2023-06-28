@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent, waitFor, screen, cleanup } from '@testing-library/react';
 import ExcelFilter from './ExcelFilter';
 import * as XLSX from 'xlsx';
+import userEvent from "@testing-library/user-event";
 
 afterEach(cleanup);
 
@@ -24,7 +25,8 @@ describe('ExcelFilter', () => {
     });
 
     if (dateSelectorInput instanceof HTMLInputElement) {
-      fireEvent.input(dateSelectorInput, { target: { value: '2023-06-27' } });
+      //fireEvent.input(dateSelectorInput, { target: { value: '2023-06-27' } });
+      userEvent.type(dateSelectorInput, '2023-06-27');
     }
 
     const readMock = jest.spyOn(XLSX, 'read');

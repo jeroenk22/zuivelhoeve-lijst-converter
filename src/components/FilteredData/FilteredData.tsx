@@ -3,12 +3,16 @@ import React from 'react';
 interface FilteredDataProps {
   filteredRowCount: number;
   tableData: any[][];
+  colliCount: number
 }
 
 const FilteredData: React.FC<FilteredDataProps> = ({
   filteredRowCount,
   tableData,
+  colliCount
 }) => {
+
+  console.log(tableData);
   // Extracteer de eerste rij van tableData als de tabelkop
   const tableHeader = tableData.length > 0 ? tableData[0] : [];
 
@@ -17,7 +21,9 @@ const FilteredData: React.FC<FilteredDataProps> = ({
 
   return (
     <div>
-      <p>Aantal Zuivelhoeve adressen: <b>{filteredRowCount}</b></p>
+      <p>Aantal Zuivelhoeve adressen: <b>{filteredRowCount}</b><br />
+        Totale aantal colli: <b>{colliCount}</b>
+      </p>
       <table>
         <thead>
           <tr>

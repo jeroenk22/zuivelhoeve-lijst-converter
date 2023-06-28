@@ -8,6 +8,8 @@ const UseExcelFilter = () => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [filteredRowCount, setFilteredRowCount] = useState<number>(0);
   const [tableData, setTableData] = useState<any[][]>([]);
+  const [colliCount, setColliCount] = useState<number>(0);
+
 
   // Handler voor wijzigingen in de geselecteerde datum
   const handleDateChange = (selectedDate: Date | null) => {
@@ -42,6 +44,11 @@ const UseExcelFilter = () => {
         const rowCount = trimmedData.length;
         setFilteredRowCount(rowCount);
 
+        // Tel het totale aantal colli
+        const colliTotal = trimmedData.reduce((total: number, row: any[]) => total + parseInt(row[8]), 0);
+        setColliCount(colliTotal);
+
+
         // Maak een nieuw werkblad met de gewenste kolommen en koppen
         const newHeaders = [
           'Gewenst (lossen)',
@@ -65,7 +72,7 @@ const UseExcelFilter = () => {
             'Gekoeld vervoeren',
             row[8],
             'Colli',
-          ]),
+          ])
         ];
 
         // Werk de tabelgegevens bij voor weergave in de <table>
@@ -81,6 +88,7 @@ const UseExcelFilter = () => {
     uploadedFile,
     filteredRowCount,
     tableData,
+    colliCount,
     handleDateChange,
     handleFileUpload,
     handleFormSubmit,
