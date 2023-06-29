@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as XLSX from 'xlsx';
-import { filterData, removeFirstEntry, removeLastEntry } from '../../utils/dataUtils';
+import { filterData, removeFirstEntry, removeLastEntry, capitalizeColumn, updateData } from '../../utils/dataUtils';
 import { getWeekNumber } from '../../utils/dateUtils';
 
 const UseExcelFilter = () => {
@@ -40,6 +40,14 @@ const UseExcelFilter = () => {
         // Verwijder de eerste rij (koppen) en de laatste rij uit de gefilterde data
         const trimmedData = removeFirstEntry(removeLastEntry(filteredData));
 
+        // Zet de data in kolom index 5 om naar hoofdletters
+        const capitalizedData = capitalizeColumn(trimmedData, 3); 
+
+        const bijgewerkteData = updateData(capitalizedData);
+
+        console.log('trimmedData', trimmedData);
+        console.log('captilazitd', capitalizedData);
+
         // Tel het aantal overgebleven rijen
         const rowCount = trimmedData.length;
         setFilteredRowCount(rowCount);
@@ -64,7 +72,7 @@ const UseExcelFilter = () => {
 
         const newWorksheetData = [
           newHeaders,
-          ...trimmedData.map((row: any[]) => [
+          ...bijgewerkteData.map((row: any[]) => [
             date?.toLocaleDateString('nl-NL'),
             `Zuivelhoeve ${row[0]}`, // Voeg het voorvoegsel "Zuivelhoeve" toe aan de gegevens in de 2e kolom
             ...row.slice(1, 4),
