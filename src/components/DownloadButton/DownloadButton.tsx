@@ -34,7 +34,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
   };
 
   return (
-    <button onClick={handleDownload} disabled={!selectedDate}>
+    <button data-testid='download-button' onClick={handleDownload} disabled={!selectedDate}>
       Download MendriX importbestand
     </button>
   );

@@ -13,7 +13,7 @@ const DateSelector: React.FC<DateSelectorProps> = ({ date, onDateChange }) => {
   };
 
   return (
-    <div>
+    <div data-testid='date-selector-container'>
       <label htmlFor='date'>Datum:</label>
       <DatePicker
         id='date'

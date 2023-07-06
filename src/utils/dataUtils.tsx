@@ -26,3 +26,36 @@ export function removeFirstEntry(data: any[][]): any[][] {
 export function removeLastEntry(data: any[][]): any[][] {
   return removeEntry(data, data.length - 1);
 }
+
+// Plaatsnamen capitalizen
+export function capitalizeColumn(data: any[][], columnIndex: number): any[][] {
+  const nieuweData = [...data];
+  for (let i = 0; i < nieuweData.length; i++) {
+    const rij = nieuweData[i];
+    if (rij[columnIndex] !== undefined && typeof rij[columnIndex] === 'string') {
+      const woorden = rij[columnIndex].split(" ");
+      const gekapitaliseerdeWoorden = woorden.map((woord: string) => {
+        if (woord === woord.toUpperCase()) {
+          return woord.charAt(0) + woord.slice(1).toLocaleLowerCase();
+        }
+        return woord;
+      });
+      rij[columnIndex] = gekapitaliseerdeWoorden.join(" ");
+    }
+  }
+  return nieuweData;
+}
+
+// Adres Zuivelhoeve Kijkduin corrigeren
+export function updateData(data: any[][]): any[][] {
+  const nieuweData = [...data];
+  nieuweData.forEach((rij) => {
+    if (rij[1] === "Kaas&Delicatessenwinkel Kijkduin BV" && rij[2] === "2554 GX") {
+      rij[1] = "Deltaplein 280";
+      rij[2] = "2554 GW";
+    }
+  });
+  return nieuweData;
+};
+
+
