@@ -45,9 +45,6 @@ const UseExcelFilter = () => {
 
         const bijgewerkteData = updateData(capitalizedData);
 
-        console.log('trimmedData', trimmedData);
-        console.log('captilazitd', capitalizedData);
-
         // Tel het aantal overgebleven rijen
         const rowCount = trimmedData.length;
         setFilteredRowCount(rowCount);

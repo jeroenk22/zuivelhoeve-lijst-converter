@@ -1,9 +1,6 @@
 import React from 'react';
-import { cleanup, render } from '@testing-library/react';
-import userEvent from "@testing-library/user-event";
+import { render, fireEvent } from '@testing-library/react';
 import FilterButton from './FilterButton';
-
-afterEach(cleanup);
 
 describe('FilterButton', () => {
   it('moet de onClick functie aanroepen wanneer erop wordt geklikt', () => {
@@ -11,10 +8,8 @@ describe('FilterButton', () => {
     const { getByText } = render(<FilterButton onClick={handleClick} />);
     const button = getByText('Upload Excelbestand');
 
-    userEvent.click(button);
+    fireEvent.click(button);
 
     expect(handleClick).toHaveBeenCalled();
   });
 });
-
-

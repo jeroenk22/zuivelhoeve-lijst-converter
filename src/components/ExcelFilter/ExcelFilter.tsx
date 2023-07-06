@@ -28,7 +28,7 @@ const ExcelFilter: React.FC = () => {
         </button>
       </form>
       {filteredRowCount > 0 && (
-        <>
+        <div data-testid="filtered-data-container">
           <FilteredData
             filteredRowCount={filteredRowCount}
             tableData={tableData}
@@ -40,7 +40,7 @@ const ExcelFilter: React.FC = () => {
             weekNumber={getWeekNumber(date as Date)}
             selectedDate={date}
           />
-        </>
+        </div>
       )}
     </div>
   );

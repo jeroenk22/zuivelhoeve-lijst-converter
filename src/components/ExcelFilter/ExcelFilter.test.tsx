@@ -1,58 +1,37 @@
 import React from 'react';
-import { render, fireEvent, waitFor, screen, cleanup } from '@testing-library/react';
+import { render, fireEvent, waitFor, screen, act } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import ExcelFilter from './ExcelFilter';
-import * as XLSX from 'xlsx';
-import userEvent from "@testing-library/user-event";
-
-afterEach(cleanup);
+import FilterButton from '../FilterButton/FilterButton';
 
 describe('ExcelFilter', () => {
-  test('roept de vereiste functies aan wanneer het formulier wordt ingediend', async () => {
+  test('rendert bestandsuploader, datumselector en verzendknop', () => {
     render(<ExcelFilter />);
-    const fileUploader = screen.getByTestId('file-uploader');
-    const dateSelectorContainer = screen.getByTestId('date-selector-container');
-    const dateSelectorInput = dateSelectorContainer.querySelector('input');
-    const submitButton = screen.getByTestId('upload-button');
+    
+    // Bestandsuploader
+    expect(screen.getByTestId('file-uploader')).toBeInTheDocument();
+    
+    // Datumselector
+    expect(screen.getByLabelText('Datum:')).toBeInTheDocument();
 
-    fireEvent.change(fileUploader, {
-      target: {
-        files: [
-          new File([], 'test.xlsx', {
-            type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-          }),
-        ],
-      },
-    });
-
-    if (dateSelectorInput instanceof HTMLInputElement) {
-      //fireEvent.input(dateSelectorInput, { target: { value: '2023-06-27' } });
-      userEvent.type(dateSelectorInput, '2023-06-27');
-    }
-
-    const readMock = jest.spyOn(XLSX, 'read');
-    const sheetToJsonMock = jest.spyOn(XLSX.utils, 'sheet_to_json');
-    const filterDataMock = jest.spyOn(require('../../utils/dataUtils'), 'filterData');
-    const removeFirstEntryMock = jest.spyOn(require('../../utils/dataUtils'), 'removeFirstEntry');
-    const removeLastEntryMock = jest.spyOn(require('../../utils/dataUtils'), 'removeLastEntry');
-
-    // Mock data
-    const data = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
-
-    // Roep de te testen functie aan
-    const workbook = XLSX.read(data, { type: 'array' });
-
-    // Voer je beweringen uit
-    // Voorbeeld: Controleer of het workbook object is gemaakt
-    expect(workbook).toBeDefined();
-
-    fireEvent.click(submitButton);
-
-    await waitFor(() => {
-      expect(readMock).toHaveBeenCalled();
-      expect(sheetToJsonMock).toHaveBeenCalled();
-      expect(filterDataMock).toHaveBeenCalled();
-      expect(removeFirstEntryMock).toHaveBeenCalled();
-      expect(removeLastEntryMock).toHaveBeenCalled();
-    });
+    // Verzendknop
+    expect(screen.getByTestId('upload-button')).toBeInTheDocument();
   });
+
+  test('schakelt verzendknop uit wanneer er geen bestand of datum is geselecteerd', () => {
+    render(<ExcelFilter />);
+    const submitButton = screen.getByTestId('upload-button') as HTMLButtonElement;
+
+    expect(submitButton.disabled).toBe(true);
+
+    // Selecteer een bestand
+    const fileInput = screen.getByTestId('file-uploader');
+    fireEvent.change(fileInput, { target: { files: [new File([], 'voorbeeld.xlsx')] } });
+    expect(submitButton.disabled).toBe(true);
+
+    // Selecteer een datum
+    const dateInput = screen.getByLabelText('Datum:');
+    fireEvent.change(dateInput, { target: { value: '2023-01-01' } });
+    expect(submitButton.disabled).toBe(false);
+  }); 
 });

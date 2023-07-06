@@ -12,7 +12,6 @@ const FilteredData: React.FC<FilteredDataProps> = ({
   colliCount
 }) => {
 
-  console.log(tableData);
   // Extracteer de eerste rij van tableData als de tabelkop
   const tableHeader = tableData.length > 0 ? tableData[0] : [];
 
