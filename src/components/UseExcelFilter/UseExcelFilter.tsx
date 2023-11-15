@@ -37,7 +37,7 @@ const UseExcelFilter = () => {
         // Filter de data op basis van kolom I
         const filteredData = filterData(jsonData);
 
-        // Verwijder de eerste rij (koppen) en de laatste rij uit de gefilterde data
+        // Verwijder de eerste rij (koppen) (en de laatste rij uit de gefilterde data)
         //const trimmedData = removeFirstEntry(removeLastEntry(filteredData));
         const trimmedData = removeFirstEntry(filteredData);
 
