@@ -5,6 +5,7 @@ const App: React.FC = () => {
   return (
     <div className='App'>
       <ExcelFilter />
+      <p>versie 1.1</p>
     </div>
   );
 };
