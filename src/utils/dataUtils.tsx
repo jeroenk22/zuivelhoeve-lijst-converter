@@ -1,17 +1,45 @@
+// export function filterData(data: any[][]): any[][] {
+//   // Filter de gegevens op basis van kolom I
+//   const gefilterdeData = data.filter((rij, rowIndex) => {
+//     // Vervang 'kolomIndex' door het juiste indexnummer van kolom I (0-gebaseerd)
+//     const kolomIndex = 8; // Index van kolom I (Totaal aantal colli) is 8 (0-gebaseerd)
+
+//     const celWaarde = rij[kolomIndex];
+
+//     // Voer de filterlogica uit om rijen met 0 of lege waarden in kolom I te verwijderen
+//     return celWaarde !== '' && celWaarde !== 0;
+//   });
+
+//   return gefilterdeData;
+// }
+
 export function filterData(data: any[][]): any[][] {
-  // Filter de gegevens op basis van kolom I
-  const gefilterdeData = data.filter((rij, rowIndex) => {
-    // Vervang 'kolomIndex' door het juiste indexnummer van kolom I (0-gebaseerd)
-    const kolomIndex = 8; // Index van kolom I is 8 (0-gebaseerd)
+  // Voeg de totale waarden toe aan de bestaande kolom I
+  const newData = data.map((row, rowIndex) => {
+    if (rowIndex === 0) {
+      // Laat de koptekstrij ongewijzigd
+      return row;
+    } else {
+      // Bereken de som van de waarden in kolommen E tot en met H
+      const sum = row.slice(4, 8).reduce((acc, value) => acc + (parseFloat(value) || 0), 0);
 
-    const celWaarde = rij[kolomIndex];
+      // Voeg de totale waarde toe aan de bestaande kolom I (index 8)
+      const updatedRow = [...row];
+      updatedRow[8] = sum;
+      return updatedRow;
+    }
+  });
 
-    // Voer de filterlogica uit om rijen met 0 of lege waarden in kolom I te verwijderen
+  // Filter de gegevens op basis van de waarde in kolom I
+  const filteredData = newData.filter((row, rowIndex) => {
+    const kolomIndex = 8; // Index van kolom I (Totaal aantal colli) is 8 (0-gebaseerd)
+    const celWaarde = row[kolomIndex];
     return celWaarde !== '' && celWaarde !== 0;
   });
 
-  return gefilterdeData;
+  return filteredData;
 }
+
 
 export function removeEntry(data: any[][], index: number): any[][] {
   const nieuweData = [...data];

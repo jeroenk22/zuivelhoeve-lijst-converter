@@ -38,7 +38,8 @@ const UseExcelFilter = () => {
         const filteredData = filterData(jsonData);
 
         // Verwijder de eerste rij (koppen) en de laatste rij uit de gefilterde data
-        const trimmedData = removeFirstEntry(removeLastEntry(filteredData));
+        //const trimmedData = removeFirstEntry(removeLastEntry(filteredData));
+        const trimmedData = removeFirstEntry(filteredData);
 
         // Zet de data in kolom index 5 om naar hoofdletters
         const capitalizedData = capitalizeColumn(trimmedData, 3); 
