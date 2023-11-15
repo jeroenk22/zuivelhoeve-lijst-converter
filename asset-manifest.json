@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/zuivelhoeve-lijst-converter/static/css/main.c28f9c76.css",
-    "main.js": "/zuivelhoeve-lijst-converter/static/js/main.cf762097.js",
+    "main.js": "/zuivelhoeve-lijst-converter/static/js/main.bb373d6d.js",
     "static/js/787.4f7da1cb.chunk.js": "/zuivelhoeve-lijst-converter/static/js/787.4f7da1cb.chunk.js",
     "index.html": "/zuivelhoeve-lijst-converter/index.html",
     "main.c28f9c76.css.map": "/zuivelhoeve-lijst-converter/static/css/main.c28f9c76.css.map",
-    "main.cf762097.js.map": "/zuivelhoeve-lijst-converter/static/js/main.cf762097.js.map",
+    "main.bb373d6d.js.map": "/zuivelhoeve-lijst-converter/static/js/main.bb373d6d.js.map",
     "787.4f7da1cb.chunk.js.map": "/zuivelhoeve-lijst-converter/static/js/787.4f7da1cb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c28f9c76.css",
-    "static/js/main.cf762097.js"
+    "static/js/main.bb373d6d.js"
   ]
 }
